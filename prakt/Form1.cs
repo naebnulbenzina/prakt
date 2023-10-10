@@ -1,150 +1,83 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Drawing;
-using System.IO;
-using System.Media;
-using System.Reflection;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace prakt
+namespace ЗЗЗ
 {
     public partial class Form1 : Form
     {
-        SoundPlayer player = new SoundPlayer();
-
-        string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-
-        int timer = 100;
-
-        Label firstClicked = null;
-
-        Label secondClicked = null;
-
-        Random random = new Random();
-
-        List<string> icons = new List<string>()
-        {
-            "!", "!", "N", "N", "F", "F", "w", "w",
-            "k", "k", ",", ",", "l", "l", "t", "t",
-            "a", "a", "q", "q", ".", ".", "s", "s",
-            "v", "v", ";", ";", "p", "p", "]", "]",
-            "i", "i", "z", "z"
-        };
-
-        private void AssigniconsToSquares()
-        {
-            foreach (Control control in tableLayoutPanel1.Controls)
-            { 
-                Label iconLabel = control as Label;
-                if (iconLabel != null)
-                { 
-                    int randomNumber = random.Next(icons.Count);
-                    iconLabel.Text = icons[randomNumber];
-                    iconLabel.ForeColor = iconLabel.BackColor;
-                    icons.RemoveAt(randomNumber);
-
-                }
-
-
-            
-            }
-            
-            timer2.Start();
-        
-        }
         public Form1()
         {
             InitializeComponent();
-            AssigniconsToSquares();
         }
 
-        private void label29_Click(object sender, EventArgs e)
+        ColorDialog MyDialog = new ColorDialog();
+
+
+
+
+        private void showButton_Click(object sender, EventArgs e)
         {
-            if (timer1.Enabled == true)
-                return;
-
-            Label clickedlabel = sender as Label;   
-            if (clickedlabel != null) 
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                if (clickedlabel.ForeColor == Color.Black)
-                    return;
-                if (firstClicked == null)
-                { 
-                    firstClicked = clickedlabel;
-                    firstClicked.ForeColor = Color.Black;
-                    return;
-                }
+                pictureBox1.Load(openFileDialog1.FileName);
             }
-            secondClicked = clickedlabel;
-            secondClicked.ForeColor = Color.Black;
-
-            CheckForWinner();
-
-            if (firstClicked.Text == secondClicked.Text)
-            {
-                player.SoundLocation = path + "\\levelup.wav";
-                player.Play();
-                firstClicked = null;
-                secondClicked = null;
-                return;
-            }
-
-            else 
-            {
-                player.SoundLocation = path + "\\leveldown.wav";
-                player.Play();
-            }
-
-            timer1.Start();
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void backgroundButton_Click(object sender, EventArgs e)
         {
-            timer1.Stop();
-            firstClicked.ForeColor = firstClicked.BackColor;
-            secondClicked.ForeColor = secondClicked.BackColor;
-            firstClicked = null;
-            secondClicked = null;   
+            MyDialog.ShowDialog();
+
+            if (MyDialog.ShowDialog() == DialogResult.OK)
+                pictureBox1.BackColor = MyDialog.Color;
         }
 
-        private void CheckForWinner()
+        private void clearButton_Click(object sender, EventArgs e)
         {
-            foreach (Control control in tableLayoutPanel1.Controls)
-            { 
-                Label iconLabel = control as Label;
-                if (iconLabel != null)
-                {
-                    if (iconLabel.ForeColor == iconLabel.BackColor)
-                        return;
-                }
-               
-            }
-
-            MessageBox.Show("You molodec", "Congratulations");
-            Close();
+            pictureBox1.Image = null;
         }
 
-        private void timer2_Tick(object sender, EventArgs e)
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if (timer > 0)
-            {
-                if (timer < 10)
-                    if (label37.BackColor == Color.Red)
-                        label37.BackColor = Color.White;
-
-                    else label37.BackColor = Color.Red;
-                timer--;
-                label37.Text = timer + " seconds";
-            }
-
+            if (checkBox1.Checked)
+                pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             else
-            { 
-                timer2.Stop();
-                MessageBox.Show("You lox");
-                Close();
+                pictureBox1.SizeMode = PictureBoxSizeMode.Normal;
+        }
+
+        private void checkBox1_CheckedChanged_1(object sender, EventArgs e)
+        {
+            if (checkBox2.Checked)
+                pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+            else
+                pictureBox2.SizeMode = PictureBoxSizeMode.Normal;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                pictureBox2.Load(openFileDialog1.FileName);
             }
         }
-    }   
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            pictureBox2.Image = null;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            MyDialog.ShowDialog();
+
+            if (MyDialog.ShowDialog() == DialogResult.OK)
+                pictureBox2.BackColor = MyDialog.Color;
+        }
+    }
 }
-
