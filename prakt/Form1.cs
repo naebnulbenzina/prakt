@@ -8,76 +8,46 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ЗЗЗ
+namespace prakt
 {
-    public partial class Form1 : Form
+    public partial class Lab5 : Form
     {
-        public Form1()
+        public Lab5()
         {
             InitializeComponent();
         }
 
-        ColorDialog MyDialog = new ColorDialog();
-
-
-
-
-        private void showButton_Click(object sender, EventArgs e)
+        private void btnCalc_Click(object sender, EventArgs e)
         {
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            int fromX = int.Parse(txtX1.Text);
+            int toX = int.Parse(txtX2.Text);
+            int fromY = int.Parse(txtY1.Text);
+            int toY = int.Parse(txtY2.Text);
+
+            if (fromX > toX)
             {
-                pictureBox1.Load(openFileDialog1.FileName);
+                MessageBox.Show("Интервал должен быть от меньшего к большему");
+                txtX1.Text = "";
+                txtX2.Text = "";
             }
-        }
 
-        private void backgroundButton_Click(object sender, EventArgs e)
-        {
-            MyDialog.ShowDialog();
 
-            if (MyDialog.ShowDialog() == DialogResult.OK)
-                pictureBox1.BackColor = MyDialog.Color;
-        }
-
-        private void clearButton_Click(object sender, EventArgs e)
-        {
-            pictureBox1.Image = null;
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkBox1.Checked)
-                pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            else
-                pictureBox1.SizeMode = PictureBoxSizeMode.Normal;
-        }
-
-        private void checkBox1_CheckedChanged_1(object sender, EventArgs e)
-        {
-            if (checkBox2.Checked)
-                pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
-            else
-                pictureBox2.SizeMode = PictureBoxSizeMode.Normal;
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            if (fromY > toY)
             {
-                pictureBox2.Load(openFileDialog1.FileName);
+                MessageBox.Show("Интервал должен быть от меньшего к большему");
+                txtY1.Text = "";
+                txtY2.Text = "";
             }
-        }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            pictureBox2.Image = null;
-        }
+            for (int x = fromX; x <= toX; x++) 
+            {
+                for (int y = fromY; y <= toY; y++)
+                {
+                    lstResult.Items.Add($"z(x,y) = {x} - {y} = {x - y}");
+                }
+            }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            MyDialog.ShowDialog();
-
-            if (MyDialog.ShowDialog() == DialogResult.OK)
-                pictureBox2.BackColor = MyDialog.Color;
+               
         }
     }
 }
