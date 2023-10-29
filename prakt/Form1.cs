@@ -1,43 +1,35 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace prakt
 {
     public partial class Lab5 : Form
     {
+        int fromX;
+        int toX;
+        int fromY;
+        int toY;
+
         public Lab5()
         {
             InitializeComponent();
         }
 
+
         private void btnCalc_Click(object sender, EventArgs e)
         {
-            int fromX = int.Parse(txtX1.Text);
-            int toX = int.Parse(txtX2.Text);
-            int fromY = int.Parse(txtY1.Text);
-            int toY = int.Parse(txtY2.Text);
-
-            if (fromX > toX)
+            lstResult.Items.Clear();
+            
+            if (fromX > toX || fromY > toY || !int.TryParse(txtX1.Text, out fromX) || !int.TryParse(txtX2.Text, out toX) || !int.TryParse(txtY1.Text, out fromY) || !int.TryParse(txtY2.Text, out toY))
             {
-                MessageBox.Show("Интервал должен быть от меньшего к большему");
-                txtX1.Text = "";
-                txtX2.Text = "";
+                MessageBox.Show("OSHIBKA");
+                return;
+               
+
             }
 
 
-            if (fromY > toY)
-            {
-                MessageBox.Show("Интервал должен быть от меньшего к большему");
-                txtY1.Text = "";
-                txtY2.Text = "";
-            }
+            
 
             for (int x = fromX; x <= toX; x++) 
             {
@@ -48,6 +40,12 @@ namespace prakt
             }
 
                
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            new Form2().Show();
+            
         }
     }
 }
