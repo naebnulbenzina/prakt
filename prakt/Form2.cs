@@ -31,7 +31,7 @@ namespace prakt
 
             if (File.Exists(fileName)) File.Delete(fileName);
 
-            using (FileStream fs = File.Create(fileName, 1024)) 
+            using (FileStream fs = File.Create(fileName, 1024))
 
             using (BinaryWriter bw = new BinaryWriter(fs))
             {

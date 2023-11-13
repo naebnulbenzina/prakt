@@ -27,7 +27,7 @@ namespace prakt
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            file1.Filter = "(*.jpg)|*.jpg";
+            file1.Filter = "(*.jpg)|*.jpg|(*.png)|*.png|All files (*.*)|*.*";
 
         }
 
@@ -45,11 +45,13 @@ namespace prakt
 
         private void button1_Click(object sender, EventArgs e)
         {
+            
             saveFileDialog1.FileName = fname;
+            saveFileDialog1.Filter = "(*.jpg)|*.jpg|(*.png)|*.png|All files (*.*)|*.*";
             saveFileDialog1.ShowDialog();
 
             pct.Image.Save(saveFileDialog1.FileName);
-
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
