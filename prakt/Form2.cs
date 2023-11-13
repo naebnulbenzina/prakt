@@ -53,6 +53,18 @@ namespace prakt
 
         private void button3_Click(object sender, EventArgs e)
         {
+            string fileName = textBox1.Text;
+            listBox2.Items.Clear();
+            using (FileStream fs = new FileStream(fileName, FileMode.Open))
+            using (BinaryReader br = new BinaryReader(fs))
+            {
+                while (br.PeekChar() != -1)
+                {
+                    listBox2.Items.Add(br.ReadString());
+                }
+                br.Close();
+                fs.Close();
+            }
 
         }
     }
