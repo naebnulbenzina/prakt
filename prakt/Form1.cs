@@ -12,7 +12,8 @@ namespace prakt
 {
     public partial class Form1 : Form
     {
-        private int[] Arr = new int[10];
+        
+        private int[] Arr = new int[20];
         public Form1()
         {
             InitializeComponent();
@@ -20,9 +21,12 @@ namespace prakt
 
         private void btnMas_Click(object sender, EventArgs e)
         {
-            int n = 10;
+            ClearFields();
+             
+            int n = int.Parse(textBox1.Text);
             int a = int.Parse(textBox2.Text);
             int b = int.Parse(textBox3.Text);
+            
 
             Random r = new Random();
 
@@ -65,7 +69,35 @@ namespace prakt
             for (int i = 0; i < Arr.Length; i++)
             {
                 k = MinNumber(Arr, i);
+                t = Arr[i];
+                Arr[i] = Arr[k];
+                Arr[k] = t;
+                label5.Text += Arr[i];
+                if (i != Arr.Length - 1)
+                {
+                    label5.Text += ", ";
+                }
+
+                btnSort.Enabled = false;
             }
         }
+
+        private void ClearFields()
+        {
+            label4.Text = "";
+            label5.Text = "";
+            btnSort.Enabled = false;
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void form2_Click(object sender, EventArgs e)
+        {
+            new Form2().Show();
+        }
     }
+
 }
