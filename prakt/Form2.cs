@@ -28,8 +28,6 @@ namespace prakt
             
             chart1.ChartAreas[0].AxisX.Minimum = x0;
             chart1.ChartAreas[0].AxisX.Maximum = xk;
-
-           
             chart1.ChartAreas[0].AxisX.MajorGrid.Interval = dx;
 
           
@@ -39,8 +37,8 @@ namespace prakt
 
             while (x <= (xk + dx / 2))
             {
-                double y = 0.41 + Math.Pow(x, 2/3) * Math.Cos(x + Math.Pow(Math.E, x));
-
+                double y = 1.35 * Math.Pow(x, 3) + Math.Pow(Math.Cos(Math.Pow(x, 3) - (-6.25)), 2);
+                
                 chart1.Series[0].Points.AddXY(x, y);
                
 
@@ -48,6 +46,11 @@ namespace prakt
             }
 
             
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
