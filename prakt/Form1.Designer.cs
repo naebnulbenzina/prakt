@@ -42,7 +42,7 @@
             this.btnMas = new System.Windows.Forms.Button();
             this.btnSort = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
-            this.form2 = new System.Windows.Forms.Button();
+            this.sss = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -184,21 +184,22 @@
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
-            // form2
+            // sss
             // 
-            this.form2.Location = new System.Drawing.Point(336, 370);
-            this.form2.Name = "form2";
-            this.form2.Size = new System.Drawing.Size(82, 23);
-            this.form2.TabIndex = 6;
-            this.form2.Text = "form2";
-            this.form2.UseVisualStyleBackColor = true;
+            this.sss.Location = new System.Drawing.Point(336, 370);
+            this.sss.Name = "sss";
+            this.sss.Size = new System.Drawing.Size(82, 23);
+            this.sss.TabIndex = 6;
+            this.sss.Text = "Sort2";
+            this.sss.UseVisualStyleBackColor = true;
+            this.sss.Click += new System.EventHandler(this.sss_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(429, 416);
-            this.Controls.Add(this.form2);
+            this.Controls.Add(this.sss);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnSort);
             this.Controls.Add(this.btnMas);
@@ -231,7 +232,7 @@
         private System.Windows.Forms.Button btnMas;
         private System.Windows.Forms.Button btnSort;
         private System.Windows.Forms.Button btnExit;
-        private System.Windows.Forms.Button form2;
+        private System.Windows.Forms.Button sss;
     }
 }
 

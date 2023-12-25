@@ -38,11 +38,7 @@ namespace prakt
 
             }
             btnSort.Enabled = true;
-          
-
-            
-            
-            
+            sss.Enabled = true;
         }
 
         private int MinNumber(int[] x, int m)
@@ -64,6 +60,7 @@ namespace prakt
 
         private void btnSort_Click(object sender, EventArgs e)
         {
+            ClearFields();
             int k, t;
 
             for (int i = 0; i < Arr.Length; i++)
@@ -94,10 +91,42 @@ namespace prakt
             this.Close();
         }
 
-        private void form2_Click(object sender, EventArgs e)
+        private void sorttt()
         {
-            new Form2().Show();
+            for (int i = 1; i < Arr.Length; i++)
+            {
+                int k = Arr[i];
+                int j = i - 1;
+
+                while (j >= 0 && Arr[j] > k)
+                {
+                    Arr[j + 1] = Arr[j];
+                    Arr[j] = k;
+                    j--;
+
+                }
+            }
+
         }
+
+        private void sss_Click(object sender, EventArgs e)
+        {
+            sorttt();
+
+            for (int i = 0; i < Arr.Length; i++)
+            {
+                label5.Text += Arr[i].ToString();
+                if (i != Arr.Length - 1)
+                {
+                    label5.Text += ", ";            
+                }
+
+            }
+             sss.Enabled = false;
+            btnSort.Enabled = false;
+        }
+        
     }
 
 }
+
